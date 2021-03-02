@@ -1,0 +1,44 @@
+<div class="card border-primary my-4">
+    <h1 class="card-header">Clientes</h1>
+    <div class="card-body text-primary">
+        <h2 class="card-title">Listado de Clientes</h2>
+
+        <div>
+            <button mat-raised-button color="primary" [routerLink]="['/clientes/form']">Crear Cliente</button>
+        </div>
+
+        <div *ngIf="clientes?.length == 0" class="alert alert-info">
+            !No hay registros en la Base de Datos¡
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha</th>
+                    <th>Email</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of clientes">
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.nombre}}</td>
+                    <td>{{ item.apellido}}</td>
+                    <td>{{ item.createAt}}</td>
+                    <td>{{ item.email}}</td>
+                    <td>
+                        <button mat-flat-button color="primary"
+                        [routerLink]="['/clientes/form',item.id]">Editar</button>
+                    </td>
+                    <td>
+                        <button mat-raised-button color="warn"
+                        (click) = 'delete(item)'>Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
